@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [],
-  controllers: [],
-  providers: [],
+  imports: [
+    MongooseModule.forRoot(
+      'mongodb://localhost:27017/puuuudding',
+      { useNewUrlParser: true, useUnifiedTopology: true },
+    ),
+  ],
 })
 export default class AppModule {}
