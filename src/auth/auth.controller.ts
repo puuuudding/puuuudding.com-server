@@ -1,6 +1,6 @@
 import {
   Controller,
-  Post, Request,
+  Post, Request, HttpCode, HttpStatus,
   UseGuards,
 } from '@nestjs/common';
 import LocalAuthGuard from './local-auth.guard';
@@ -12,6 +12,7 @@ export default class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
+  @HttpCode(HttpStatus.OK)
   async login(@Request() req) {
     return this.authService.login(req.user);
   }
