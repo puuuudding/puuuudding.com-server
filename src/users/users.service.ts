@@ -8,6 +8,6 @@ export default class UsersService {
   constructor(@InjectModel(User.name) private UserModel: Model<User>) {}
 
   async findOne(username: string): Promise<User | null> {
-    return this.UserModel.findOne({ username }).exec();
+    return this.UserModel.findOne({ username }).lean();
   }
 }
