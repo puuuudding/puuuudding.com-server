@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  mongo:
+    image: mongo:4.4-bionic
+    container_name: puuuudding_server_mongo
+    networks:
+      - server
+    restart: always
+    volumes:
+      - db:/data/db
+      - dbcfg:/data/configdb
+  nest:
+    image: puuuudding/puuuudding.com-server:latest
+    container_name: puuuudding_server_nest
+    depends_on:
+      - mongo
+    networks:
+      - server
+    restart: always
+    environment:
+      JWT_STRATEGY_SECRET: ${JWT_STRATEGY_SECRET}
+      DB_URI: mongodb://mongo:27017/puuuudding
+    ports:
+      - "127.0.0.1:9979:9979"
+volumes:
+  db:
+  dbcfg:
+
+networks:
+  server:
