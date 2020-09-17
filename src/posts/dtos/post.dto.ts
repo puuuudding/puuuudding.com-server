@@ -5,5 +5,7 @@ export default class PostDto {
 
   content: string;
 
+  active: boolean;
+
   parsedHtml: string;
 }

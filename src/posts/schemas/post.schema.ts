@@ -13,6 +13,9 @@ export class Post extends Document {
 
   @Prop()
   content: string;
+
+  @Prop({ default: false })
+  active: boolean;
 }
 
 export const postSchema = SchemaFactory.createForClass(Post);
