@@ -9,11 +9,11 @@ export default class PostsService {
   constructor(@InjectModel(Post.name) private PostModel: Model<Post>) {}
 
   async getAll(): Promise<Post[]> {
-    return this.PostModel.find().exec();
+    return this.PostModel.find().lean();
   }
 
   async getOne(id: string): Promise<PostDto> {
-    const post: PostDto = await this.PostModel.findById(id).lean();
+    const post: PostDto | null = await this.PostModel.findById(id).lean();
     if (post) {
       post.parsedHtml = 'placeholder';
       return post;
@@ -27,6 +27,10 @@ export default class PostsService {
   }
 
   async update(id: string, post: PostDto): Promise<Post> {
-    return this.PostModel.findByIdAndUpdate(id, post);
+    const updatedPost: Post | null = await this.PostModel.findByIdAndUpdate(id, post);
+    if (updatedPost) {
+      return updatedPost;
+    }
+    throw new NotFoundException();
   }
 }
