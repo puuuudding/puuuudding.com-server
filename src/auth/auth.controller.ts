@@ -3,6 +3,7 @@ import {
   Post, Request, HttpCode, HttpStatus,
   UseGuards,
 } from '@nestjs/common';
+import { NestJS } from 'nest-app-env';
 import LocalAuthGuard from './guards/local-auth.guard';
 import AuthService from './auth.service';
 
@@ -13,7 +14,7 @@ export default class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   @HttpCode(HttpStatus.OK)
-  async login(@Request() req) {
+  async login(@Request() req: NestJS.GuardedRequest) {
     return this.authService.login(req.user);
   }
 }
