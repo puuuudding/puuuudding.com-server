@@ -8,8 +8,14 @@ import { Post } from './schemas/post.schema';
 export class PostsService {
   constructor(@InjectModel(Post.name) private PostModel: Model<Post>) {}
 
-  async getAll(): Promise<Post[]> {
-    return this.PostModel.find().lean();
+  async getAll(includeDraft: boolean = false): Promise<Post[]> {
+    let query;
+    if (includeDraft) {
+      query = this.PostModel.find();
+    } else {
+      query = this.PostModel.find({ active: true });
+    }
+    return query.sort({ createdAt: 'desc' }).lean();
   }
 
   async getOne(id: string): Promise<PostDto> {

@@ -13,8 +13,14 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
-  async getAll(): Promise<P[]> {
+  async getPublicPosts(): Promise<P[]> {
     return this.postsService.getAll();
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('all')
+  async getAllPosts(): Promise<P[]> {
+    return this.postsService.getAll(true);
   }
 
   @Get(':id')
