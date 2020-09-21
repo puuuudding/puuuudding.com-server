@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcryptjs';
-import UsersService from 'users/users.service';
-import UserDto from 'users/dtos/user.dto';
+import { UsersService } from 'users/users.service';
+import { UserDto } from 'users/dtos/user.dto';
 
 @Injectable()
-export default class AuthService {
+export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,

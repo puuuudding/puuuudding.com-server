@@ -18,6 +18,7 @@ module.exports = {
     mongo: true,
   },
   rules: {
+    'import/prefer-default-export': OFF,
     'no-plusplus': [ERROR, { allowForLoopAfterthoughts: true }],
     'arrow-parens': [ERROR, 'as-needed', { 'requireForBlockBody': true }],
     'no-underscore-dangle': [ERROR, {

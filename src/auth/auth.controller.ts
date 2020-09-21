@@ -6,11 +6,11 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
 import { NestJS } from 'nest-app-env';
-import LocalAuthGuard from './guards/local-auth.guard';
-import AuthService from './auth.service';
+import { LocalAuthGuard } from './guards/local-auth.guard';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
-export default class AuthController {
+export class AuthController {
   constructor(
     private authService: AuthService,
     private configService: ConfigService,

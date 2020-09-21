@@ -3,13 +3,13 @@ import {
   Get, Post, Put, Body, Param,
   UseGuards,
 } from '@nestjs/common';
-import JwtAuthGuard from 'auth/guards/jwt-auth.guard';
-import PostsService from './posts.service';
-import PostDto from './dtos/post.dto';
+import { JwtAuthGuard } from 'auth/guards/jwt-auth.guard';
+import { PostsService } from './posts.service';
+import { PostDto } from './dtos/post.dto';
 import { Post as P } from './schemas/post.schema';
 
 @Controller('posts')
-export default class PostsController {
+export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
