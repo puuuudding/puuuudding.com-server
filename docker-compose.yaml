@@ -20,6 +20,7 @@ services:
     environment:
       JWT_STRATEGY_SECRET: ${JWT_STRATEGY_SECRET}
       DB_URI: mongodb://mongo:27017/puuuudding
+      NODE_ENV: production
     ports:
       - "127.0.0.1:9979:9979"
 volumes:

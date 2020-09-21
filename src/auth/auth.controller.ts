@@ -1,8 +1,9 @@
 import {
   Controller,
-  Post, Request, HttpCode, HttpStatus,
+  Post, Req, Res,
   UseGuards,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { NestJS } from 'nest-app-env';
 import LocalAuthGuard from './guards/local-auth.guard';
 import AuthService from './auth.service';
@@ -11,10 +12,10 @@ import AuthService from './auth.service';
 export default class AuthController {
   constructor(private authService: AuthService) {}
 
+  // TODO: use decorator to set jwt cookie
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  @HttpCode(HttpStatus.OK)
-  async login(@Request() req: NestJS.GuardedRequest) {
-    return this.authService.login(req.user);
+  async login(@Req() req: NestJS.GuardedRequest, @Res() res: Response): Promise<void> {
+    return this.authService.login(req.user, res);
   }
 }
