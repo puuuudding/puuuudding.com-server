@@ -6,7 +6,11 @@ const ERROR = 2;
 
 module.exports = {
   root: true,
-  extends: ['airbnb-typescript/base'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'airbnb-typescript/base',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
