@@ -3,8 +3,8 @@ import {
   Get, Request,
   UseGuards,
 } from '@nestjs/common';
-import { NestJS } from 'nest-app-env';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { NestJS } from 'nestAppEnv';
+import { JwtAuthGuard } from 'auth/guards/jwt-auth.guard';
 import { UserDto } from './dtos/user.dto';
 
 @Controller('users')

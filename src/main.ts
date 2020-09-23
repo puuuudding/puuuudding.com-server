@@ -7,4 +7,5 @@ async function bootstrap() {
   app.use(cookieParser());
   await app.listen(9979);
 }
-bootstrap();
+// eslint-disable-next-line no-void
+void bootstrap();

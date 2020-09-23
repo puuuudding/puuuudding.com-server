@@ -2,6 +2,7 @@ import {
   Controller,
   Get, Post, Put, Body, Param,
   UseGuards,
+  NotFoundException,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'auth/guards/jwt-auth.guard';
 import { PostsService } from './posts.service';
@@ -25,7 +26,11 @@ export class PostsController {
 
   @Get(':id')
   async getOne(@Param('id') id: string): Promise<PostDto> {
-    return this.postsService.getOne(id);
+    const post = await this.postsService.getOne(id);
+    if (post) {
+      return post;
+    }
+    throw new NotFoundException();
   }
 
   @UseGuards(JwtAuthGuard)
@@ -37,6 +42,10 @@ export class PostsController {
   @UseGuards(JwtAuthGuard)
   @Put(':id')
   async update(@Param('id') id: string, @Body() post: PostDto): Promise<P> {
-    return this.postsService.update(id, post);
+    const updatedPost = await this.postsService.update(id, post);
+    if (updatedPost) {
+      return updatedPost;
+    }
+    throw new NotFoundException();
   }
 }

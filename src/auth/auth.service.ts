@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcryptjs';
+import { Strategies } from 'nestAppEnv';
 import { UsersService } from 'users/users.service';
 import { UserDto } from 'users/dtos/user.dto';
 
@@ -21,7 +22,7 @@ export class AuthService {
   }
 
   async login(user: UserDto): Promise<string> {
-    const payload = {
+    const payload: Strategies.JWTPayload = {
       sub: user.userId,
       username: user.username,
     };

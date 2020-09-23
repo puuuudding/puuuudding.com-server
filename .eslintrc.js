@@ -29,5 +29,8 @@ module.exports = {
       ...baseStyleRules['no-underscore-dangle'][1],
       allow: ['_id'],
     }],
+    '@typescript-eslint/prefer-namespace-keyword': OFF,
+    '@typescript-eslint/require-await': OFF,
+    'class-methods-use-this': OFF,
   },
 };
