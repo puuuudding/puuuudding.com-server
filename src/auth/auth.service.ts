@@ -1,17 +1,15 @@
-import { Injectable, HttpStatus } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Response } from 'express';
 import { compare } from 'bcryptjs';
-import UsersService from 'users/users.service';
-import UserDto from 'users/dtos/user.dto';
+import { Strategies } from 'nestAppEnv';
+import { UsersService } from 'users/users.service';
+import { UserDto } from 'users/dtos/user.dto';
 
 @Injectable()
-export default class AuthService {
+export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
-    private configService: ConfigService,
   ) {}
 
   async validateUser(username: string, pwd: string): Promise<UserDto | null> {
@@ -23,20 +21,11 @@ export default class AuthService {
     return null;
   }
 
-  async login(user: UserDto, res: Response): Promise<void> {
-    const payload = {
+  async login(user: UserDto): Promise<string> {
+    const payload: Strategies.JWTPayload = {
       sub: user.userId,
       username: user.username,
     };
-    const accessToken = this.jwtService.sign(payload);
-    res
-      .status(HttpStatus.OK)
-      .cookie('auth', accessToken, {
-        maxAge: 1e3 * 60 * 60 * 12,
-        httpOnly: true,
-        secure: this.configService.get('NODE_ENV') !== 'development',
-      })
-      .json(user)
-      .end();
+    return this.jwtService.sign(payload);
   }
 }

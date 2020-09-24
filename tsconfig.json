@@ -15,7 +15,8 @@
     "outDir": "./dist",
     "baseUrl": "./src",
     "incremental": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "preserveConstEnums": true
   },
   "include": ["src/**/*"]
 }

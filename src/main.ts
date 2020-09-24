@@ -1,10 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
-import AppModule from './app.module';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
   await app.listen(9979);
 }
-bootstrap();
+// eslint-disable-next-line no-void
+void bootstrap();

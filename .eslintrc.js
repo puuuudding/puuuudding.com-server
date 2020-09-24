@@ -6,7 +6,11 @@ const ERROR = 2;
 
 module.exports = {
   root: true,
-  extends: ['airbnb-typescript/base'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'airbnb-typescript/base',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
@@ -18,11 +22,15 @@ module.exports = {
     mongo: true,
   },
   rules: {
+    'import/prefer-default-export': OFF,
     'no-plusplus': [ERROR, { allowForLoopAfterthoughts: true }],
     'arrow-parens': [ERROR, 'as-needed', { 'requireForBlockBody': true }],
     'no-underscore-dangle': [ERROR, {
       ...baseStyleRules['no-underscore-dangle'][1],
       allow: ['_id'],
     }],
+    '@typescript-eslint/prefer-namespace-keyword': OFF,
+    '@typescript-eslint/require-await': OFF,
+    'class-methods-use-this': OFF,
   },
 };

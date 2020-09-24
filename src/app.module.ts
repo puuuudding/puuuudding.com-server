@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { set as setMongooseOption } from 'mongoose';
-import AuthModule from './auth/auth.module';
-import PostsModule from './posts/posts.module';
-import UsersModule from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { PostsModule } from './posts/posts.module';
+import { UsersModule } from './users/users.module';
 
 setMongooseOption('returnOriginal', false);
 
@@ -25,4 +25,4 @@ setMongooseOption('returnOriginal', false);
     UsersModule,
   ],
 })
-export default class AppModule {}
+export class AppModule {}

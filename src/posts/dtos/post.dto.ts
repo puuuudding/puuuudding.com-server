@@ -1,4 +1,4 @@
-export default class PostDto {
+export class PostDto {
   title: string;
 
   abstract: string;
