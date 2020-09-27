@@ -23,11 +23,6 @@ pipeline {
                 }
             }
         }
-        stage("Clean up") {
-            steps {
-                sh "docker rmi $DOCKER_REGISTRY"
-            }
-        }
         stage("Update container") {
             environment {
                 SSH_CRED = credentials("825d8d0b-0077-45f1-b93a-6637efc93f2d")
