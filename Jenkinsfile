@@ -1,6 +1,7 @@
 pipeline {
     environment {
         DOCKER_REGISTRY = "puuuudding/puuuudding.com-server"
+        DOCKER_REGISTRY_URL = credentials("80259f3c-4355-4ea2-8e9a-5639a5ea2e18")
         DOCKER_REGISTRY_CRED = "4f030acb-c26c-4f65-9cca-ee51edeac2fd"
         DOCKER_IMAGE = ""
     }
@@ -16,7 +17,7 @@ pipeline {
         stage("Deploy image") {
             steps {
                 script {
-                    docker.withRegistry("", DOCKER_REGISTRY_CRED) {
+                    docker.withRegistry(DOCKER_REGISTRY_URL, DOCKER_REGISTRY_CRED) {
                         DOCKER_IMAGE.push "latest"
                     }
                 }

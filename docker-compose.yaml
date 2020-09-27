@@ -10,7 +10,7 @@ services:
       - db:/data/db
       - dbcfg:/data/configdb
   nest:
-    image: puuuudding/puuuudding.com-server:latest
+    image: ${DOCKER_REGISTRY_URL}/puuuudding/puuuudding.com-server:latest
     container_name: puuuudding_server_nest
     depends_on:
       - mongo
